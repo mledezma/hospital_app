@@ -8,6 +8,7 @@ module.exports = {
 	create,
 	remove,
 	getAgenda,
+	update
 };
 
 function getAll(req, res){
@@ -73,4 +74,29 @@ function getAgenda(req, res){
 	stream.on('data', appointment => data.push(appointment));
 	stream.on('end', () => res.json(data));
 	stream.on('error', err => res.json({error: err}));
+}
+
+/**
+ * Update one department
+ * @param req
+ * @param res
+ */
+function update(req, res){
+	let id = req.params ? req.params.appointmentId : null;
+	if(!id) return res.json({error: `Invalid appointment id ${id}`});
+	let params = {
+		date: req.body.date,
+		ID: req.body.ID,
+		first_name: req.body.first_name,
+		last_name: req.body.last_name,
+		deparment: req.body.deparment,
+	};
+	let appointment = new Appointment(params);
+	appointment.valid().then(valid => {
+		console.log('appointment validation', valid);
+		if(!valid) return res.json(appointment.errors);
+		// save the new department
+		appointment.update()
+		.then(data => res.json(data), error => res.json({error: error}));
+	});
 }

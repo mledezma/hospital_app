@@ -1,7 +1,7 @@
 {
-  "name": "final_homework",
+  "name": "hospital_app",
   "version": "1.0.0",
-  "description": "Final homework of node.js",
+  "description": "Front-End interface for hospital app",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -14,9 +14,7 @@
   "author": "Marco Ledezma <marcoledezmacordero09@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.17.2",
-    "express": "^4.15.3",
-    "moment": "^2.18.1",
-    "mongodb": "^2.2.30"
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.2.1"
   }
 }
